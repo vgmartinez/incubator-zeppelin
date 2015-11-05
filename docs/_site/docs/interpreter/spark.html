@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Spark Interpreter Group</title>
+    <meta name="description" content="">
+    <meta name="author" content="The Apache Software Foundation">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/zeppelin/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/themes/zeppelin/css/style.css?body=1" rel="stylesheet" type="text/css">
+    <link href="/assets/themes/zeppelin/css/syntax.css" rel="stylesheet"  type="text/css" media="screen" /> 
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+
+  <body>
+    
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img src="/assets/themes/zeppelin/img/zeppelin_logo.png" width="50" alt="I'm zeppelin">
+            Apache Zeppelin <small>(incubating)</small>
+          </a>
+        </div>
+        <nav class="navbar-collapse collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/community.html">Community</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/download.html">Download</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/docs/index.html">Docs</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            <li><a href="https://github.com/apache/incubator-zeppelin">GitHub</a></li>
+            <li id="apache">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">Apache<b class="caret"></b></a>
+               <ul class="dropdown-menu">
+                <li><a href="http://www.apache.org/foundation/how-it-works.html">Apache Software Foundation</a></li>
+                <li><a href="http://www.apache.org/licenses/">Apache License</a></li>
+                <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+                <li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+            </ul>
+            </li>
+          </ul>
+        </nav><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      
+<!--<div class="hero-unit Spark Interpreter Group">
+  <h1></h1>
+</div>
+-->
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Spark</h2>
+
+<p><a href="http://spark.apache.org">Apache Spark</a> is supported in Zeppelin with 
+Spark Interpreter group, which consisted of 4 interpreters.</p>
+
+<table class="table-configuration">
+  <tr>
+    <th>Name</th>
+    <th>Class</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>%spark</td>
+    <td>SparkInterpreter</td>
+    <td>Creates SparkContext and provides scala environment</td>
+  </tr>
+  <tr>
+    <td>%pyspark</td>
+    <td>PySparkInterpreter</td>
+    <td>Provides python environment</td>
+  </tr>
+  <tr>
+    <td>%sql</td>
+    <td>SparkSQLInterpreter</td>
+    <td>Provides SQL environment</td>
+  </tr>
+  <tr>
+    <td>%dep</td>
+    <td>DepInterpreter</td>
+    <td>Dependency loader</td>
+  </tr>
+</table>
+
+<p><br /></p>
+
+<h3>SparkContext, SQLContext, ZeppelinContext</h3>
+
+<p>SparkContext, SQLContext, ZeppelinContext are automatically created and exposed as variable names &#39;sc&#39;, &#39;sqlContext&#39; and &#39;z&#39;, respectively, both in scala and python environments.</p>
+
+<p>Note that scala / python environment shares the same SparkContext, SQLContext, ZeppelinContext instance.</p>
+
+<p><a name="dependencyloading"> </a>
+<br />
+<br /></p>
+
+<h3>Dependency loading</h3>
+
+<p>When your code requires external library, instead of doing download/copy/restart Zeppelin, you can easily do following jobs using %dep interpreter.</p>
+
+<ul>
+<li>Load libraries recursively from Maven repository</li>
+<li>Load libraries from local filesystem</li>
+<li>Add additional maven repository</li>
+<li>Automatically add libraries to SparkCluster (You can turn off)</li>
+</ul>
+
+<p>Dep interpreter leverages scala environment. So you can write any Scala code here.</p>
+
+<p>Here&#39;s usages.</p>
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="o">%</span><span class="n">dep</span>
+<span class="n">z</span><span class="o">.</span><span class="n">reset</span><span class="o">()</span> <span class="c1">// clean up previously added artifact and repository</span>
+
+<span class="c1">// add maven repository</span>
+<span class="n">z</span><span class="o">.</span><span class="n">addRepo</span><span class="o">(</span><span class="s">&quot;RepoName&quot;</span><span class="o">).</span><span class="n">url</span><span class="o">(</span><span class="s">&quot;RepoURL&quot;</span><span class="o">)</span>
+
+<span class="c1">// add maven snapshot repository</span>
+<span class="n">z</span><span class="o">.</span><span class="n">addRepo</span><span class="o">(</span><span class="s">&quot;RepoName&quot;</span><span class="o">).</span><span class="n">url</span><span class="o">(</span><span class="s">&quot;RepoURL&quot;</span><span class="o">).</span><span class="n">snapshot</span><span class="o">()</span>
+
+<span class="c1">// add artifact from filesystem</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;/path/to.jar&quot;</span><span class="o">)</span>
+
+<span class="c1">// add artifact from maven repository, with no dependency</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:version&quot;</span><span class="o">).</span><span class="n">excludeAll</span><span class="o">()</span>
+
+<span class="c1">// add artifact recursively</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:version&quot;</span><span class="o">)</span>
+
+<span class="c1">// add artifact recursively except comma separated GroupID:ArtifactId list</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:version&quot;</span><span class="o">).</span><span class="n">exclude</span><span class="o">(</span><span class="s">&quot;groupId:artifactId,groupId:artifactId, ...&quot;</span><span class="o">)</span>
+
+<span class="c1">// exclude with pattern</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:version&quot;</span><span class="o">).</span><span class="n">exclude</span><span class="o">(*)</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:version&quot;</span><span class="o">).</span><span class="n">exclude</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:*&quot;</span><span class="o">)</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:version&quot;</span><span class="o">).</span><span class="n">exclude</span><span class="o">(</span><span class="s">&quot;groupId:*&quot;</span><span class="o">)</span>
+
+<span class="c1">// local() skips adding artifact to spark clusters (skipping sc.addJar())</span>
+<span class="n">z</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="s">&quot;groupId:artifactId:version&quot;</span><span class="o">).</span><span class="n">local</span><span class="o">()</span>
+</code></pre></div>
+<p>Note that %dep interpreter should be used before %spark, %pyspark, %sql.</p>
+
+<p><a name="zeppelincontext"> </a>
+<br />
+<br /></p>
+
+<h3>ZeppelinContext</h3>
+
+<p>Zeppelin automatically injects ZeppelinContext as variable &#39;z&#39; in your scala/python environment. ZeppelinContext provides some additional functions and utility.</p>
+
+<p><br /></p>
+
+<h4>Object exchange</h4>
+
+<p>ZeppelinContext extends map and it&#39;s shared between scala, python environment.
+So you can put some object from scala and read it from python, vise versa.</p>
+
+<p>Put object from scala</p>
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="o">%</span><span class="n">spark</span>
+<span class="k">val</span> <span class="n">myObject</span> <span class="k">=</span> <span class="o">...</span>
+<span class="n">z</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="s">&quot;objName&quot;</span><span class="o">,</span> <span class="n">myObject</span><span class="o">)</span>
+</code></pre></div>
+<p>Get object from python</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">python</span>
+<span class="n">myObject</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;objName&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><br /></p>
+
+<h4>Form creation</h4>
+
+<p>ZeppelinContext provides functions for creating forms. 
+In scala and python environments, you can create forms programmatically.</p>
+<div class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="o">%</span><span class="n">spark</span>
+<span class="cm">/* Create text input form */</span>
+<span class="n">z</span><span class="o">.</span><span class="n">input</span><span class="o">(</span><span class="s">&quot;formName&quot;</span><span class="o">)</span>
+
+<span class="cm">/* Create text input form with default value */</span>
+<span class="n">z</span><span class="o">.</span><span class="n">input</span><span class="o">(</span><span class="s">&quot;formName&quot;</span><span class="o">,</span> <span class="s">&quot;defaultValue&quot;</span><span class="o">)</span>
+
+<span class="cm">/* Create select form */</span>
+<span class="n">z</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;formName&quot;</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">((</span><span class="s">&quot;option1&quot;</span><span class="o">,</span> <span class="s">&quot;option1DisplayName&quot;</span><span class="o">),</span>
+                         <span class="o">(</span><span class="s">&quot;option2&quot;</span><span class="o">,</span> <span class="s">&quot;option2DisplayName&quot;</span><span class="o">)))</span>
+
+<span class="cm">/* Create select form with default value*/</span>
+<span class="n">z</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;formName&quot;</span><span class="o">,</span> <span class="s">&quot;option1&quot;</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">((</span><span class="s">&quot;option1&quot;</span><span class="o">,</span> <span class="s">&quot;option1DisplayName&quot;</span><span class="o">),</span>
+                                    <span class="o">(</span><span class="s">&quot;option2&quot;</span><span class="o">,</span> <span class="s">&quot;option2DisplayName&quot;</span><span class="o">)))</span>
+</code></pre></div>
+<p>In sql environment, you can create form in simple template.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">%sql
+select * from ${table=defaultTableName} where text like &#39;%${search}%&#39;
+</code></pre></div>
+<p>To learn more about dynamic form, checkout <a href="../dynamicform.html">Dynamic Form</a>.</p>
+
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <!-- <p>&copy; 2015 The Apache Software Foundation</p>-->
+      </footer>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+    <script src="/assets/themes/zeppelin/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

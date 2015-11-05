@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Display System</title>
+    <meta name="description" content="">
+    <meta name="author" content="The Apache Software Foundation">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/zeppelin/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/themes/zeppelin/css/style.css?body=1" rel="stylesheet" type="text/css">
+    <link href="/assets/themes/zeppelin/css/syntax.css" rel="stylesheet"  type="text/css" media="screen" /> 
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+
+  <body>
+    
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img src="/assets/themes/zeppelin/img/zeppelin_logo.png" width="50" alt="I'm zeppelin">
+            Apache Zeppelin <small>(incubating)</small>
+          </a>
+        </div>
+        <nav class="navbar-collapse collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/community.html">Community</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/download.html">Download</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/docs/index.html">Docs</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            <li><a href="https://github.com/apache/incubator-zeppelin">GitHub</a></li>
+            <li id="apache">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">Apache<b class="caret"></b></a>
+               <ul class="dropdown-menu">
+                <li><a href="http://www.apache.org/foundation/how-it-works.html">Apache Software Foundation</a></li>
+                <li><a href="http://www.apache.org/licenses/">Apache License</a></li>
+                <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+                <li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+            </ul>
+            </li>
+          </ul>
+        </nav><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      
+<!--<div class="hero-unit Angular Display System">
+  <h1></h1>
+</div>
+-->
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Angular (Beta)</h3>
+
+<p>Angular display system treats output as an view template of <a href="https://angularjs.org/">AngularJS</a>.
+It compiles templates and display inside of Zeppelin.</p>
+
+<p>Zeppelin provides gateway between your interpreter and your compiled AngularJS view teamplates.
+Therefore, you can not only update scope variable from your interpreter but also watch your scope variable in the interpreter, which is JVM process.</p>
+
+<p><br /></p>
+
+<h4>Print AngularJS view</h4>
+
+<p>To use angular display system, your output should starts with &quot;%angular&quot;.
+<img src="../../assets/themes/zeppelin/img/screenshots/display_angular.png" width=600px /></p>
+
+<p>Note that display system is backend independent.</p>
+
+<p>Because of variable &#39;name&#39; is not defined, &#39;Hello {{name}}&#39; display &#39;Hello &#39;.</p>
+
+<p><br /></p>
+
+<h4>Bind/Unbind variable</h4>
+
+<p>Through ZeppelinContext, you can bind/unbind variable to AngularJS view.</p>
+
+<p>Currently it only works in Spark Interpreter (scala).</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// bind my &#39;object&#39; as angular scope variable &#39;name&#39; in current notebook.
+z.angularBind(String name, Object object)
+
+// bind my &#39;object&#39; as angular scope variable &#39;name&#39; in all notebooks related to current interpreter.
+z.angularBindGlobal(String name, Object object)
+
+// unbind angular scope variable &#39;name&#39; in current notebook.
+z.angularBind(String name)
+
+// unbind angular scope variable &#39;name&#39; in all notebooks related to current interpreter.
+z.angularBindGlobal(String name)
+</code></pre></div>
+<p>In the example, let&#39;s bind &quot;world&quot; variable &#39;name&#39;. Then you can see AngularJs view are updated immediately.</p>
+
+<p><img src="../../assets/themes/zeppelin/img/screenshots/display_angular1.png" width=600px /></p>
+
+<p><br /></p>
+
+<h4>Watch/Unwatch variable</h4>
+
+<p>Through ZeppelinContext, you can watch/unwatch variable in AngularJs view.</p>
+
+<p>Currently it only works in Spark Interpreter (scala).</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// register for angular scope variable &#39;name&#39; (notebook)
+z.angularWatch(String name, (before, after) =&gt; { ... })
+
+// unregister watcher for angular variable &#39;name&#39; (notebook)
+z.angularUnwatch(String name)
+
+// register for angular scope variable &#39;name&#39; (global)
+z.angularWatchGlobal(String name, (before, after) =&gt; { ... })
+
+// unregister watcher for angular variable &#39;name&#39; (global)
+z.angularUnwatchGlobal(String name)
+</code></pre></div>
+<p>Let&#39;s make an button, that increment &#39;run&#39; variable by 1 when it is clicked.
+z.angularBind(&quot;run&quot;, 0) will initialize &#39;run&#39; to zero. And then register watcher of &#39;run&#39;.</p>
+
+<p><img src="../../assets/themes/zeppelin/img/screenshots/display_angular2.png" width=600px /></p>
+
+<p>After clicked button, you&#39;ll see both &#39;run&#39; and numWatched are increased by 1</p>
+
+<p><img src="../../assets/themes/zeppelin/img/screenshots/display_angular3.png" width=600px /></p>
+
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <!-- <p>&copy; 2015 The Apache Software Foundation</p>-->
+      </footer>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+    <script src="/assets/themes/zeppelin/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

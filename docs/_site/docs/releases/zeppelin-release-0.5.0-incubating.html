@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Zeppelin Release 0.5.0-incubating</title>
+    <meta name="description" content="">
+    <meta name="author" content="The Apache Software Foundation">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/zeppelin/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/themes/zeppelin/css/style.css?body=1" rel="stylesheet" type="text/css">
+    <link href="/assets/themes/zeppelin/css/syntax.css" rel="stylesheet"  type="text/css" media="screen" /> 
+    <!-- Le fav and touch icons -->
+    <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+
+  <body>
+    
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img src="/assets/themes/zeppelin/img/zeppelin_logo.png" width="50" alt="I'm zeppelin">
+            Apache Zeppelin <small>(incubating)</small>
+          </a>
+        </div>
+        <nav class="navbar-collapse collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/community.html">Community</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/download.html">Download</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/docs/index.html">Docs</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            <li><a href="https://github.com/apache/incubator-zeppelin">GitHub</a></li>
+            <li id="apache">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">Apache<b class="caret"></b></a>
+               <ul class="dropdown-menu">
+                <li><a href="http://www.apache.org/foundation/how-it-works.html">Apache Software Foundation</a></li>
+                <li><a href="http://www.apache.org/licenses/">Apache License</a></li>
+                <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+                <li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+            </ul>
+            </li>
+          </ul>
+        </nav><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      
+<!--<div class="hero-unit Zeppelin Release 0.5.0-incubating">
+  <h1></h1>
+</div>
+-->
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Zeppelin Release 0.5.0-incubating</h3>
+
+<p>Zeppelin 0.5.0-incubating is the first release under Apache incubation, with contributions from 42 developers and more than 600 commits.</p>
+
+<p>To download Zeppelin 0.5.0-incubating visit the <a href="../../download.html">download</a> page.</p>
+
+<p>You can visit <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12316221&amp;version=12329850">issue tracker</a> for full list of issues being resolved.</p>
+
+<h3>Contributors</h3>
+
+<p>The following developers contributed to this release:</p>
+
+<ul>
+<li>Akshat Aranya - New features and Improvements in UI.</li>
+<li>Alexander Bezzubov -Improvements and Bug fixes in Core, UI, Build system. New feature and Improvements in Spark interpreter. Documentation in roadmap.</li>
+<li>Anthony Corbacho - Improvements in Website. Bug fixes Build system. Improvements and Bug fixes in UI. Documentation in roadmap.</li>
+<li>Brennon York - Improvements and Bug fixes in Build system.</li>
+<li>CORNEAU Damien - New feature, Improvements and Bug fixes in UI and Build system.</li>
+<li>Corey Huang - Improvements in Build system. New feature in Core.</li>
+<li>Digeratus - Improvements in Tutorials.</li>
+<li>Dimitrios Liapis - Improvements in Documentation.</li>
+<li>DuyHai DOAN - New feature in Build system.</li>
+<li>Emmanuelle Raffenne - Bug fixes in UI.</li>
+<li>Eran Medan - Improvements in Documentation.</li>
+<li>Eugene Morozov - Bug fixes in Core.</li>
+<li>Felix Cheung - Improvements in Spark interpreter. Improvements in Documentation. New features, Improvements and Bug fixes in UI.</li>
+<li>Hung Lin - Improvements in Core.</li>
+<li>Hyungu Roh - Bug fixes in UI.</li>
+<li>Ilya Ganelin - Improvements in Tutorials.</li>
+<li>JaeHwa Jung - New features in Tajo interpreter.</li>
+<li>Jakob Homan - Improvements in Website.</li>
+<li>James Carman - Improvements in Build system.</li>
+<li>Jongyoul Lee - Improvements in Core, Build system and Spark interpreter. Bug fixes in Spark Interpreter. New features in Build system and Spark interpreter. Improvements in Documentation.</li>
+<li>Juarez Bochi - Bug fixes in Build system.</li>
+<li>Julien Buret - Bug fixes in Spark interpreter.</li>
+<li>Jérémy Subtil - Bug fixes in Build system.</li>
+<li>Kevin (SangWoo) Kim - New features in Core, Tutorials. Improvements in Documentation. New features, Improvements and Bug fixes in UI.</li>
+<li>Kyoung-chan Lee - Improvements in Documentation.</li>
+<li>Lee moon soo - Improvements in Tutorials. New features, Improvements and Bug fixes in Core, UI, Build system and Spark interpreter. New features in Flink interpreter. Improvments in Documentation.</li>
+<li>Mina Lee - Improvements and Bug fixes in UI. New features in UI. Improvements in Core, Website.</li>
+<li>Rajat Gupta - Bug fixes in Spark interpreter.</li>
+<li>Ram Venkatesh - Improvements in Core, Build system, Spark interpreter and Markdown interpreter. New features and Bug fixes in Hive interpreter.</li>
+<li>Sebastian YEPES - Improvements in Core.</li>
+<li>Seckin Savasci - Improvements in Build system.</li>
+<li>Timothy Shelton - Bug fixes in UI.</li>
+<li>Vincent Botta - New features in UI.</li>
+<li>Young boom - Improvements in UI.</li>
+<li>bobbych - Improvements in Spark interpreter.</li>
+<li>debugger87 - Bug fixes in Core.</li>
+<li>dobachi - Improvements in UI.</li>
+<li>epahomov - Improvements in Core and Spark interpreter.</li>
+<li>kevindai0126 - Improvements in Core.</li>
+<li>rahul agarwal - Bug fixes in Core.</li>
+<li>whisperstream - Improvements in Spark interpreter.</li>
+<li>yundai - Improvements in Core.</li>
+</ul>
+
+<p>Thanks to everyone who made this release possible!</p>
+
+  </div>
+</div>
+
+
+      <hr>
+      <footer>
+        <!-- <p>&copy; 2015 The Apache Software Foundation</p>-->
+      </footer>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+    <script src="/assets/themes/zeppelin/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
