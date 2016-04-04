@@ -221,3 +221,8 @@
   text-decoration: none;
   cursor: default;
 }
+
+.tab-pane {
+    border-radius: 0;
+    padding: 10px;
+}

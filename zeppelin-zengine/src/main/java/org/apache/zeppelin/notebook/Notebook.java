@@ -19,6 +19,8 @@ package org.apache.zeppelin.notebook;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,6 +32,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.HtmlEmail;
+import org.apache.commons.mail.SimpleEmail;
 import org.apache.zeppelin.conf.ZeppelinConfiguration;
 import org.apache.zeppelin.conf.ZeppelinConfiguration.ConfVars;
 import org.apache.zeppelin.display.AngularObject;
@@ -58,6 +65,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.internal.StringMap;
 import com.google.gson.stream.JsonReader;
 /**
  * Collection of Notes.
@@ -496,7 +504,16 @@ public class Notebook {
       String noteId = context.getJobDetail().getJobDataMap().getString("noteId");
       Note note = notebook.getNote(noteId);
       note.runAll();
-    
+      
+      @SuppressWarnings("rawtypes")
+      StringMap email = (StringMap) note.getConfig().get("email");
+      
+      String onStart = (String) email.get("start");
+      String onSuccess = (String) email.get("success");
+      String onError = (String) email.get("error");
+      
+      //send email when start
+      sendEmail(onStart, "crucero1989", "Start execute note " + note.getName());
       while (!note.getLastParagraph().isTerminated()) {
         try {
           Thread.sleep(1000);
@@ -504,6 +521,17 @@ public class Notebook {
           logger.error(e.toString(), e);
         }
       }
+      
+      for (Paragraph para : note.paragraphs) {
+        logger.info("-----------------------> " + para.getStatus().isError());
+        if (para.getStatus().isError()) {
+          //send email
+          logger.info("======================");
+          sendEmail(onError, "crucero1989", para.getStatus() + "\n" + para.text);
+        }
+      }
+      //send email when finish
+      sendEmail(onSuccess, "crucero1989", "Note " + note.getName() + "has finish.");
       
       boolean releaseResource = false;
       try {
@@ -594,6 +622,42 @@ public class Notebook {
   public void close() {
     this.notebookRepo.close();
     this.notebookIndex.close();
+  }
+  
+  public static void sendEmail(String email, String passw, String text) {
+    
+    Email sessionEmail = new SimpleEmail();
+    URL url = null;
+    try {
+      sessionEmail.setSmtpPort(587);
+      sessionEmail.setAuthenticator(new DefaultAuthenticator("victor.garcia@beeva.com", passw));
+      sessionEmail.setHostName("smtp.googlemail.com");
+      
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.host", "smtp.googlemail.com");
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.protocol", "smtp");
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.port", "465");
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.starttls.enable", "true");
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.auth", "true");
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.socketFactory.port", "465");
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.socketFactory.class", 
+          "javax.net.ssl.SSLSocketFactory");
+      
+      sessionEmail.setFrom("victor.garcia@beeva.com");
+      for (String mail : email.split(",")) {
+        sessionEmail.addTo(mail);
+      }      
+      
+      sessionEmail.setSubject("Note scheduler in Zeppelin");  
+  
+      sessionEmail.setMsg(text);
+    } catch (EmailException e) {
+      e.printStackTrace();
+    }
+    try {
+      sessionEmail.send();
+    } catch (EmailException e) {
+      e.printStackTrace();
+    }
   }
 
 }

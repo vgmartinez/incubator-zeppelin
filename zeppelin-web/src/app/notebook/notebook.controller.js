@@ -301,6 +301,13 @@ angular.module('zeppelinWebApp').controller('NotebookCtrl',
     $scope.setConfig();
   };
 
+  /** Set email for this note **/
+  $scope.setEmail = function(email) {
+    console.log(email);
+    $scope.note.config.email = email;
+    $scope.setConfig();
+  };
+
   /** Update note config **/
   $scope.setConfig = function(config) {
     if(config) {

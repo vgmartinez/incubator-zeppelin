@@ -11,49 +11,91 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-  <div id="schedulerModal" class="modal fade" role="dialog" modalvisible previsiblecallback="schedulerctrl.preVisible"
-    targetinput="noteName" tabindex='-1'>
+  <div id="schedulerModal" class="modal fade" role="dialog" tabindex='-1'>
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div class="modal-content" id="schedulerCtrl">
+      <div class="modal-content">
         <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Scheduler note</h4>
         </div>
+        <form class="form-horizontal">
         <div class="modal-body">
-          Run note with cron scheduler.
-          Either choose from<br/>preset or write your own <a href="http://www.quartz-scheduler.org/documentation/quartz-1.x/tutorials/crontrigger" target=_blank>cron expression</a>.
+
           <div>
-            <span>- Preset</span>
-            <a class="cron-preset" ng-repeat="cr in cronOption"
-            type="button"
-            ng-click="setCronScheduler(cr.value)"
-            dropdown-input ng-class="{ 'selected' : cr.value == note.config.cron}">{{cr.name}}</a>
-          </div>
-          <div>
-            <span>- Cron expression</span>
-            <input type="text"
-            ng-model="note.config.cron"
-            ng-change="setCronScheduler(note.config.cron)"
-            dropdown-input ng-model-options="{ debounce: 1000 }" />
-            <p ng-show="note.info.cron" class="text-danger cron-info">
-              {{note.info.cron}}
-            </p>
-          </div>
-          <div>
-            <span>- auto-restart interpreter on cron execution </span>
-            <input type="checkbox"
-            ng-model="note.config.releaseresource"
-            ng-click="setReleaseResource(note.config.releaseresource)">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#scheduler" aria-controls="scheduler" role="tab" data-toggle="tab">Scheduler</a></li>
+              <li role="presentation"><a href="#alert" aria-controls="alert" role="tab" data-toggle="tab">Alert</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="scheduler">
+                Run note with cron scheduler.
+                Either choose from preset or write your own <a href="http://www.quartz-scheduler.org/documentation/quartz-1.x/tutorials/crontrigger" target=_blank>cron expression</a>.
+                <br><br>
+                <div>
+                  <label>- Preset</label>
+                  <a class="cron-preset" ng-repeat="cr in cronOption"
+                  type="button"
+                  ng-click="setCronScheduler(cr.value)"
+                  dropdown-input ng-class="{ 'selected' : cr.value == note.config.cron}">{{cr.name}}</a>
+                </div>
+                <div>
+                  <label>- Cron expression</label>
+                  <input type="text"
+                  ng-model="note.config.cron"
+                  ng-change="setCronScheduler(note.config.cron)"
+                  dropdown-input ng-model-options="{ debounce: 1000 }" />
+                  <p ng-show="note.info.cron" class="text-danger cron-info">
+                    {{note.info.cron}}
+                  </p>
+                </div>
+                <div>
+                  <label>- auto-restart interpreter on cron execution </label>
+                  <input type="checkbox"
+                  ng-model="note.config.releaseresource"
+                  ng-click="setReleaseResource(note.config.releaseresource)">
+                </div>
+
+              </div>
+              <div role="tabpanel" class="tab-pane" id="alert">
+                Enter a addresses to email when a run starts, success, or encounters an error.
+                <br><br>
+                <div class="form-group">
+                  <label class="control-label col-sm-2">On start</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="startEmail" ng-model="note.config.email.start"
+                           placeholder="Emails (comma-separated)">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2">On success</label>
+                  <div class="col-sm-10">
+                    <input type="text"class="form-control" id="successEmail" ng-model="note.config.email.success"
+                           placeholder="Emails (comma-separated)">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2">On error</label>
+                  <div class="col-sm-10">
+                    <input type="text"class="form-control" id="errorEmail" ng-model="note.config.email.error"
+                           placeholder="Emails (comma-separated)">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="createNoteButton"
-                  class="btn btn-default"
-                  data-dismiss="modal" ng-click="schedulerctrl.createNote()">
-            <span>Ok</span>
+          <button type="button" class="btn btn-default" ng-click="setEmail(note.config.email)" data-dismiss="modal">Ok
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
           </button>
         </div>
+        </form>
       </div>
     </div>
   </div>
