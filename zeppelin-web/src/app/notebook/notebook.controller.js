@@ -325,6 +325,7 @@ angular.module('zeppelinWebApp').controller('NotebookCtrl',
 
   /** update the current note */
   $scope.$on('setNoteContent', function(event, note) {
+    console.log(note);
     $scope.paragraphUrl = $routeParams.paragraphId;
     $scope.asIframe = $routeParams.asIframe;
     if ($scope.paragraphUrl) {

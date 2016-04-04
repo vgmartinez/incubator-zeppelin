@@ -496,7 +496,17 @@ public class ZeppelinConfiguration extends XMLConfiguration {
     // Allows a way to specify a ',' separated list of allowed origins for rest and websockets
     // i.e. http://localhost:8080
     ZEPPELIN_ALLOWED_ORIGINS("zeppelin.server.allowed.origins", "*"),
-    ZEPPELIN_ANONYMOUS_ALLOWED("zeppelin.anonymous.allowed", true);
+    ZEPPELIN_ANONYMOUS_ALLOWED("zeppelin.anonymous.allowed", true),
+    ZEPPELIN_SMTP_USER("mail.smtp.user", "victor.garcia@beeva.com"),
+    ZEPPELIN_SMTP_PASS("mail.smtp.password", "crucero1989"),
+    ZEPPELIN_SMTP_HOST("mail.smtp.host", "smtp.googlemail.com"),
+    ZEPPELIN_SMTP_PROTOCOL("mail.smtp.protocol", "smtp"),
+    ZEPPELIN_SMTP_PORT("mail.smtp.port", "465"),
+    ZEPPELIN_SMTP_STARTTLS("mail.smtp.starttls.enable", "true"),
+    ZEPPELIN_SMTP_AUTH("mail.smtp.auth", "true"),
+    ZEPPELIN_SMTP_SOCKETFACTORY("mail.smtp.socketFactory.port", "465"),
+    ZEPPELIN_SMTP_SOCKETFACTORY_CLASS("mail.smtp.socketFactory.class", 
+        "javax.net.ssl.SSLSocketFactory");
 
     private String varName;
     @SuppressWarnings("rawtypes")

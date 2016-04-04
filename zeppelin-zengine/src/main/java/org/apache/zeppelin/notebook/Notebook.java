@@ -67,6 +67,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.StringMap;
 import com.google.gson.stream.JsonReader;
+import com.jcraft.jsch.ConfigRepository.Config;
 /**
  * Collection of Notes.
  */
@@ -79,7 +80,7 @@ public class Notebook {
   private InterpreterFactory replFactory;
   /** Keep the order. */
   Map<String, Note> notes = new LinkedHashMap<String, Note>();
-  private ZeppelinConfiguration conf;
+  private static ZeppelinConfiguration conf;
   private StdSchedulerFactory quertzSchedFact;
   private org.quartz.Scheduler quartzSched;
   private JobListenerFactory jobListenerFactory;
@@ -513,7 +514,7 @@ public class Notebook {
       String onError = (String) email.get("error");
       
       //send email when start
-      sendEmail(onStart, "crucero1989", "Start execute note " + note.getName());
+      sendEmail(onStart, "Start execute note " + note.getName());
       while (!note.getLastParagraph().isTerminated()) {
         try {
           Thread.sleep(1000);
@@ -523,15 +524,13 @@ public class Notebook {
       }
       
       for (Paragraph para : note.paragraphs) {
-        logger.info("-----------------------> " + para.getStatus().isError());
         if (para.getStatus().isError()) {
           //send email
-          logger.info("======================");
-          sendEmail(onError, "crucero1989", para.getStatus() + "\n" + para.text);
+          sendEmail(onError, para.getStatus() + "\n" + para.text);
         }
       }
       //send email when finish
-      sendEmail(onSuccess, "crucero1989", "Note " + note.getName() + "has finish.");
+      sendEmail(onSuccess, "Note " + note.getName() + " has finish.");
       
       boolean releaseResource = false;
       try {
@@ -624,40 +623,43 @@ public class Notebook {
     this.notebookIndex.close();
   }
   
-  public static void sendEmail(String email, String passw, String text) {
+  public static void sendEmail(String email, String text) {
     
     Email sessionEmail = new SimpleEmail();
-    URL url = null;
+    
     try {
-      sessionEmail.setSmtpPort(587);
-      sessionEmail.setAuthenticator(new DefaultAuthenticator("victor.garcia@beeva.com", passw));
-      sessionEmail.setHostName("smtp.googlemail.com");
+      sessionEmail.setSmtpPort(Integer.parseInt(conf.getString(ConfVars.ZEPPELIN_SMTP_PORT)));
+      sessionEmail.setAuthenticator(new DefaultAuthenticator(
+          conf.getString(ConfVars.ZEPPELIN_SMTP_USER),
+          conf.getString(ConfVars.ZEPPELIN_SMTP_PASS)));
+      sessionEmail.setHostName(conf.getString(ConfVars.ZEPPELIN_SMTP_HOST));
       
-      sessionEmail.getMailSession().getProperties().put("mail.smtp.host", "smtp.googlemail.com");
-      sessionEmail.getMailSession().getProperties().put("mail.smtp.protocol", "smtp");
-      sessionEmail.getMailSession().getProperties().put("mail.smtp.port", "465");
-      sessionEmail.getMailSession().getProperties().put("mail.smtp.starttls.enable", "true");
-      sessionEmail.getMailSession().getProperties().put("mail.smtp.auth", "true");
-      sessionEmail.getMailSession().getProperties().put("mail.smtp.socketFactory.port", "465");
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.host", 
+          conf.getString(ConfVars.ZEPPELIN_SMTP_HOST));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.protocol",
+          conf.getString(ConfVars.ZEPPELIN_SMTP_PROTOCOL));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.port",
+          conf.getString(ConfVars.ZEPPELIN_SMTP_PORT));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.starttls.enable",
+          conf.getString(ConfVars.ZEPPELIN_SMTP_STARTTLS));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.auth",
+          conf.getString(ConfVars.ZEPPELIN_SMTP_AUTH));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.socketFactory.port",
+          conf.getString(ConfVars.ZEPPELIN_SMTP_SOCKETFACTORY));
       sessionEmail.getMailSession().getProperties().put("mail.smtp.socketFactory.class", 
-          "javax.net.ssl.SSLSocketFactory");
-      
-      sessionEmail.setFrom("victor.garcia@beeva.com");
+          conf.getString(ConfVars.ZEPPELIN_SMTP_SOCKETFACTORY_CLASS));
+
+      sessionEmail.setFrom(conf.getString(ConfVars.ZEPPELIN_SMTP_USER));
       for (String mail : email.split(",")) {
         sessionEmail.addTo(mail);
       }      
       
       sessionEmail.setSubject("Note scheduler in Zeppelin");  
-  
       sessionEmail.setMsg(text);
-    } catch (EmailException e) {
-      e.printStackTrace();
-    }
-    try {
       sessionEmail.send();
+  
     } catch (EmailException e) {
       e.printStackTrace();
     }
   }
-
 }

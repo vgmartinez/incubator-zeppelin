@@ -225,5 +225,59 @@
   <description>Anonymous user allowed by default</description>
 </property>
 
+<property>
+  <name>mail.smtp.user</name>
+  <value>victor.garcia@beeva.com</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.password</name>
+  <value>crucero1989</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.host</name>
+  <value>smtp.googlemail.com</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.protocol</name>
+  <value>smtp</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.port</name>
+  <value>465</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.starttls.enable</name>
+  <value>true</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.auth</name>
+  <value>true</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.socketFactory.port</name>
+  <value>465</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+
+<property>
+  <name>mail.smtp.socketFactory.class</name>
+  <value>javax.net.ssl.SSLSocketFactory</value>
+  <description>Anonymous user allowed by default</description>
+</property>
+        
 </configuration>
 
