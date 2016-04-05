@@ -497,15 +497,15 @@ public class ZeppelinConfiguration extends XMLConfiguration {
     // i.e. http://localhost:8080
     ZEPPELIN_ALLOWED_ORIGINS("zeppelin.server.allowed.origins", "*"),
     ZEPPELIN_ANONYMOUS_ALLOWED("zeppelin.anonymous.allowed", true),
-    ZEPPELIN_SMTP_USER("mail.smtp.user", "victor.garcia@beeva.com"),
-    ZEPPELIN_SMTP_PASS("mail.smtp.password", "crucero1989"),
-    ZEPPELIN_SMTP_HOST("mail.smtp.host", "smtp.googlemail.com"),
-    ZEPPELIN_SMTP_PROTOCOL("mail.smtp.protocol", "smtp"),
-    ZEPPELIN_SMTP_PORT("mail.smtp.port", "465"),
-    ZEPPELIN_SMTP_STARTTLS("mail.smtp.starttls.enable", "true"),
-    ZEPPELIN_SMTP_AUTH("mail.smtp.auth", "true"),
-    ZEPPELIN_SMTP_SOCKETFACTORY("mail.smtp.socketFactory.port", "465"),
-    ZEPPELIN_SMTP_SOCKETFACTORY_CLASS("mail.smtp.socketFactory.class", 
+    ZEPPELIN_SMTP_USER("zeppelin.mail.smtp.user", "victor.garcia@beeva.com"),
+    ZEPPELIN_SMTP_PASS("zeppelin.mail.smtp.password", "crucero1989"),
+    ZEPPELIN_SMTP_HOST("zeppelin.mail.smtp.host", "smtp.googlemail.com"),
+    ZEPPELIN_SMTP_PROTOCOL("zeppelin.mail.smtp.protocol", "smtp"),
+    ZEPPELIN_SMTP_PORT("zeppelin.mail.smtp.port", "465"),
+    ZEPPELIN_SMTP_STARTTLS("zeppelin.mail.smtp.starttls.enable", "true"),
+    ZEPPELIN_SMTP_AUTH("zeppelin.mail.smtp.auth", "true"),
+    ZEPPELIN_SMTP_SOCKETFACTORY("zeppelin.mail.smtp.socketFactory.port", "465"),
+    ZEPPELIN_SMTP_SOCKETFACTORY_CLASS("zeppelin.mail.smtp.socketFactory.class", 
         "javax.net.ssl.SSLSocketFactory");
 
     private String varName;

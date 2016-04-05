@@ -66,7 +66,7 @@ angular.module('zeppelinWebApp').controller('NotebookCtrl',
   /** Init the new controller */
   var initNotebook = function() {
     websocketMsgSrv.getNotebook($routeParams.noteId);
-
+    console.log($scope);
     var currentRoute = $route.current;
 
     if (currentRoute) {

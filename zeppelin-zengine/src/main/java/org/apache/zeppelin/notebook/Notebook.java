@@ -530,7 +530,7 @@ public class Notebook {
         }
       }
       //send email when finish
-      sendEmail(onSuccess, "Note " + note.getName() + " has finish.");
+      sendEmail(onSuccess, "Note " + note.getName() + " has finish successful.");
       
       boolean releaseResource = false;
       try {

@@ -226,109 +226,109 @@
 </property>
 
 <property>
-  <name>mail.smtp.user</name>
+  <name>zeppelin.mail.smtp.user</name>
   <value>victor.garcia@beeva.com</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.password</name>
+  <name>zeppelin.mail.smtp.password</name>
   <value>crucero1989</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.host</name>
+  <name>zeppelin.mail.smtp.host</name>
   <value>smtp.googlemail.com</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.protocol</name>
+  <name>zeppelin.mail.smtp.protocol</name>
   <value>smtp</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.port</name>
+  <name>zeppelin.mail.smtp.port</name>
   <value>465</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.starttls.enable</name>
+  <name>zeppelin.mail.smtp.starttls.enable</name>
   <value>true</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.auth</name>
+  <name>zeppelin.mail.smtp.auth</name>
   <value>true</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.socketFactory.port</name>
+  <name>zeppelin.mail.smtp.socketFactory.port</name>
   <value>465</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.socketFactory.class</name>
+  <name>zeppelin.mail.smtp.socketFactory.class</name>
   <value>javax.net.ssl.SSLSocketFactory</value>
   <description>Anonymous user allowed by default</description>
 </property>
 
 <property>
-  <name>mail.smtp.user</name>
+  <name>zeppelin.mail.smtp.user</name>
   <value>viktor.manuel.garcia@gmail.com</value>
   <description>SMTP user</description>
 </property>
 
 <property>
-  <name>mail.smtp.password</name>
+  <name>zeppelin.mail.smtp.password</name>
   <value>crucero1989</value>
   <description>Password for SMTP user</description>
 </property>
 
 <property>
-  <name>mail.smtp.host</name>
+  <name>zeppelin.mail.smtp.host</name>
   <value>smtp.googlemail.com</value>
   <description>The SMTP server to connect to.</description>
 </property>
 
 <property>
-  <name>mail.smtp.protocol</name>
+  <name>zeppelin.mail.smtp.protocol</name>
   <value>smtp</value>
   <description>SMTP protocol</description>
 </property>
 
 <property>
-  <name>mail.smtp.port</name>
+  <name>zeppelin.mail.smtp.port</name>
   <value>465</value>
   <description>The SMTP server port to connect</description>
 </property>
 
 <property>
-  <name>mail.smtp.starttls.enable</name>
+  <name>zeppelin.mail.smtp.starttls.enable</name>
   <value>true</value>
   <description>If true, enables the use of the STARTTLS command (if supported by the server) to switch the connection to a TLS-protected connection before issuing any login commands.</description>
 </property>
 
 <property>
-  <name>mail.smtp.auth</name>
+  <name>zeppelin.mail.smtp.auth</name>
   <value>true</value>
   <description>If true, attempt to authenticate the user using the AUTH command.</description>
 </property>
 
 <property>
-  <name>mail.smtp.socketFactory.port</name>
+  <name>zeppelin.mail.smtp.socketFactory.port</name>
   <value>465</value>
   <description>Specifies the port to connect to when using the specified socket factory.</description>
 </property>
 
 <property>
-  <name>mail.smtp.socketFactory.class</name>
+  <name>zeppelin.mail.smtp.socketFactory.class</name>
   <value>javax.net.ssl.SSLSocketFactory</value>
   <description>Specifies the name of a class that implements the javax.net.SocketFactory interface. This class will be used to create SMTP sockets.</description>
 </property>

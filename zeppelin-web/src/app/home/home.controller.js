@@ -33,7 +33,7 @@ angular.module('zeppelinWebApp').controller('HomeCtrl', function($scope, noteboo
         console.log('Error %o %o', status, data.message);
       });
   };
-  
+
   var initHome = function() {
     websocketMsgSrv.getHomeNotebook();
     getZeppelinVersion();
