@@ -278,12 +278,15 @@
 </property>
 
 <property>
+<<<<<<< HEAD
   <name>zeppelin.websocket.max.text.message.size</name>
   <value>1024000</value>
   <description>Size in characters of the maximum text message to be received by websocket. Defaults to 1024000</description>
 </property>
 
 <property>
+=======
+>>>>>>> d2d6ae01c7313bfa654593a6485a717638bf7c44
   <name>zeppelin.mail.smtp.user</name>
   <value>victor.garcia@beeva.com</value>
   <description>Anonymous user allowed by default</description>

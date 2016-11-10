@@ -808,7 +808,6 @@ public class Notebook implements NoteEventListener {
           logger.error(e.toString(), e);
         }
       }
-
       for (Paragraph para : note.paragraphs) {
         if (para.getStatus().isError()) {
           //send email
@@ -979,7 +978,6 @@ public class Notebook implements NoteEventListener {
       for (String mail : email.split(",")) {
         sessionEmail.addTo(mail);
       }
-
       sessionEmail.setSubject("Note scheduler in Zeppelin");
       sessionEmail.setMsg(text);
       sessionEmail.send();
