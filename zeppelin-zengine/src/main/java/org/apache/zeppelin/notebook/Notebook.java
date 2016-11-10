@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
@@ -51,7 +50,10 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.apache.zeppelin.conf.ZeppelinConfiguration;
 import org.apache.zeppelin.conf.ZeppelinConfiguration.ConfVars;
 import org.apache.zeppelin.display.AngularObject;
@@ -69,6 +71,7 @@ import org.apache.zeppelin.scheduler.SchedulerFactory;
 import org.apache.zeppelin.search.SearchService;
 import org.apache.zeppelin.user.AuthenticationInfo;
 import org.apache.zeppelin.user.Credentials;
+import com.google.gson.internal.StringMap;
 
 /**
  * Collection of Notes.
@@ -76,15 +79,16 @@ import org.apache.zeppelin.user.Credentials;
 public class Notebook implements NoteEventListener {
   private static final Logger logger = LoggerFactory.getLogger(Notebook.class);
 
-  @SuppressWarnings("unused") @Deprecated //TODO(bzz): remove unused
+  @SuppressWarnings("unused")
+  @Deprecated //TODO(bzz): remove unused
   private SchedulerFactory schedulerFactory;
 
   private InterpreterFactory replFactory;
   /**
    * Keep the order.
    */
-  private final Map<String, Note> notes = new LinkedHashMap<>();
-  private ZeppelinConfiguration conf;
+  Map<String, Note> notes = new LinkedHashMap<String, Note>();
+  private static ZeppelinConfiguration conf;
   private StdSchedulerFactory quertzSchedFact;
   private org.quartz.Scheduler quartzSched;
   private JobListenerFactory jobListenerFactory;
@@ -92,20 +96,20 @@ public class Notebook implements NoteEventListener {
   private SearchService noteSearchService;
   private NotebookAuthorization notebookAuthorization;
   private final List<NotebookEventListener> notebookEventListeners =
-      Collections.synchronizedList(new LinkedList<NotebookEventListener>());
+          Collections.synchronizedList(new LinkedList<NotebookEventListener>());
   private Credentials credentials;
 
   /**
    * Main constructor \w manual Dependency Injection
    *
-   * @param noteSearchService         - (nullable) for indexing all notebooks on creating.
+   * @param noteSearchService - (nullable) for indexing all notebooks on creating.
    * @throws IOException
    * @throws SchedulerException
    */
   public Notebook(ZeppelinConfiguration conf, NotebookRepo notebookRepo,
-      SchedulerFactory schedulerFactory, InterpreterFactory replFactory,
-      JobListenerFactory jobListenerFactory, SearchService noteSearchService,
-      NotebookAuthorization notebookAuthorization, Credentials credentials)
+                  SchedulerFactory schedulerFactory, InterpreterFactory replFactory,
+                  JobListenerFactory jobListenerFactory, SearchService noteSearchService,
+                  NotebookAuthorization notebookAuthorization, Credentials credentials)
       throws IOException, SchedulerException {
     this.conf = conf;
     this.notebookRepo = notebookRepo;
@@ -127,7 +131,7 @@ public class Notebook implements NoteEventListener {
       logger.info("Notebook indexing started...");
       noteSearchService.addIndexDocs(notes.values());
       logger.info("Notebook indexing finished: {} indexed in {}s", notes.size(),
-          TimeUnit.NANOSECONDS.toSeconds(start - System.nanoTime()));
+              TimeUnit.NANOSECONDS.toSeconds(start - System.nanoTime()));
     }
 
   }
@@ -157,8 +161,8 @@ public class Notebook implements NoteEventListener {
   public Note createNote(List<String> interpreterIds, AuthenticationInfo subject)
       throws IOException {
     Note note =
-        new Note(notebookRepo, replFactory, jobListenerFactory,
-                noteSearchService, credentials, this);
+            new Note(notebookRepo, replFactory, jobListenerFactory,
+                    noteSearchService, credentials, this);
     synchronized (notes) {
       notes.put(note.getId(), note);
     }
@@ -209,7 +213,7 @@ public class Notebook implements NoteEventListener {
     gsonBuilder.setPrettyPrinting();
 
     Gson gson =
-        gsonBuilder.registerTypeAdapter(Date.class, new NotebookImportDeserializer()).create();
+            gsonBuilder.registerTypeAdapter(Date.class, new NotebookImportDeserializer()).create();
     JsonReader reader = new JsonReader(new StringReader(sourceJson));
     reader.setLenient(true);
     Note newNote;
@@ -325,7 +329,7 @@ public class Notebook implements NoteEventListener {
     // remove from all interpreter instance's angular object registry
     for (InterpreterSetting settings : replFactory.get()) {
       AngularObjectRegistry registry =
-          settings.getInterpreterGroup(subject.getUser(), id).getAngularObjectRegistry();
+              settings.getInterpreterGroup(subject.getUser(), id).getAngularObjectRegistry();
       if (registry instanceof RemoteAngularObjectRegistry) {
         // remove paragraph scope object
         for (Paragraph p : note.getParagraphs()) {
@@ -336,7 +340,7 @@ public class Notebook implements NoteEventListener {
           if (appStates != null) {
             for (ApplicationState app : appStates) {
               ((RemoteAngularObjectRegistry) registry)
-                  .removeAllAndNotifyRemoteProcess(id, app.getId());
+                      .removeAllAndNotifyRemoteProcess(id, app.getId());
             }
           }
         }
@@ -372,12 +376,12 @@ public class Notebook implements NoteEventListener {
   }
 
   public Revision checkpointNote(String noteId, String checkpointMessage,
-      AuthenticationInfo subject) throws IOException {
+                                 AuthenticationInfo subject) throws IOException {
     return notebookRepo.checkpoint(noteId, checkpointMessage, subject);
   }
 
   public List<Revision> listRevisionHistory(String noteId,
-      AuthenticationInfo subject) {
+                                            AuthenticationInfo subject) {
     return notebookRepo.revisionHistory(noteId, subject);
   }
 
@@ -428,7 +432,7 @@ public class Notebook implements NoteEventListener {
           SnapshotAngularObject snapshot = angularObjectSnapshot.get(object.getName());
           if (snapshot == null || snapshot.getLastUpdate().before(lastUpdatedDate)) {
             angularObjectSnapshot.put(object.getName(),
-                new SnapshotAngularObject(intpGroupName, object, lastUpdatedDate));
+                    new SnapshotAngularObject(intpGroupName, object, lastUpdatedDate));
           }
         }
       }
@@ -602,7 +606,7 @@ public class Notebook implements NoteEventListener {
       paragaraphDate = paragraph.getDateFinished();
     } else {
       if (paragraph.getDateFinished() != null && paragraph.getDateFinished()
-          .after(paragaraphDate)) {
+              .after(paragaraphDate)) {
         paragaraphDate = paragraph.getDateFinished();
       }
     }
@@ -689,7 +693,9 @@ public class Notebook implements NoteEventListener {
     notesInfo.add(info);
 
     return notesInfo;
-  };
+  }
+
+  ;
 
   public List<Map<String, Object>> getJobListByUnixTime(boolean needsReload,
       long lastUpdateServerUnixTime, AuthenticationInfo subject) {
@@ -724,7 +730,7 @@ public class Notebook implements NoteEventListener {
 
       // set note type ( cron or normal )
       if (note.getConfig().containsKey(CRON_TYPE_NOTE_KEYWORD) && !note.getConfig()
-          .get(CRON_TYPE_NOTE_KEYWORD).equals("")) {
+              .get(CRON_TYPE_NOTE_KEYWORD).equals("")) {
         info.put("noteType", "cron");
       } else {
         info.put("noteType", "normal");
@@ -753,7 +759,7 @@ public class Notebook implements NoteEventListener {
       // set interpreter bind type
       String interpreterGroupName = null;
       if (replFactory.getInterpreterSettings(note.getId()) != null
-          && replFactory.getInterpreterSettings(note.getId()).size() >= 1) {
+              && replFactory.getInterpreterSettings(note.getId()).size() >= 1) {
         interpreterGroupName = replFactory.getInterpreterSettings(note.getId()).get(0).getName();
       }
 
@@ -786,7 +792,16 @@ public class Notebook implements NoteEventListener {
       Note note = notebook.getNote(noteId);
       note.runAll();
 
-      while (!note.isTerminated()) {
+      @SuppressWarnings("rawtypes")
+      StringMap email = (StringMap) note.getConfig().get("email");
+
+      String onStart = (String) email.get("start");
+      String onSuccess = (String) email.get("success");
+      String onError = (String) email.get("error");
+
+      //send email when start
+      sendEmail(onStart, "Start execute note " + note.getName());
+      while (!note.getLastParagraph().isTerminated()) {
         try {
           Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -794,6 +809,14 @@ public class Notebook implements NoteEventListener {
         }
       }
 
+      for (Paragraph para : note.paragraphs) {
+        if (para.getStatus().isError()) {
+          //send email
+          sendEmail(onError, para.getStatus() + "\n" + para.text);
+        }
+      }
+      //send email when finish
+      sendEmail(onSuccess, "Note " + note.getName() + " has finish successful.");
       boolean releaseResource = false;
       try {
         Map<String, Object> config = note.getConfig();
@@ -805,7 +828,7 @@ public class Notebook implements NoteEventListener {
       }
       if (releaseResource) {
         for (InterpreterSetting setting : notebook.getInterpreterFactory()
-            .getInterpreterSettings(note.getId())) {
+                .getInterpreterSettings(note.getId())) {
           notebook.getInterpreterFactory().restart(setting.getId());
         }
       }
@@ -832,8 +855,8 @@ public class Notebook implements NoteEventListener {
 
 
       JobDetail newJob =
-          JobBuilder.newJob(CronJob.class).withIdentity(id, "note").usingJobData("noteId", id)
-              .build();
+              JobBuilder.newJob(CronJob.class).withIdentity(id, "note").usingJobData("noteId", id)
+                      .build();
 
       Map<String, Object> info = note.getInfo();
       info.put("cron", null);
@@ -841,7 +864,7 @@ public class Notebook implements NoteEventListener {
       CronTrigger trigger = null;
       try {
         trigger = TriggerBuilder.newTrigger().withIdentity("trigger_" + id, "note")
-            .withSchedule(CronScheduleBuilder.cronSchedule(cronExpr)).forJob(id, "note").build();
+          .withSchedule(CronScheduleBuilder.cronSchedule(cronExpr)).forJob(id, "note").build();
       } catch (Exception e) {
         logger.error("Error", e);
         info.put("cron", e.getMessage());
@@ -926,4 +949,44 @@ public class Notebook implements NoteEventListener {
       listener.onParagraphStatusChange(p, status);
     }
   }
+  public static void sendEmail (String email, String text){
+
+    Email sessionEmail = new SimpleEmail();
+
+    try {
+      sessionEmail.setSmtpPort(Integer.parseInt(conf.getString(ConfVars.ZEPPELIN_SMTP_PORT)));
+      sessionEmail.setAuthenticator(new DefaultAuthenticator(
+              conf.getString(ConfVars.ZEPPELIN_SMTP_USER),
+              conf.getString(ConfVars.ZEPPELIN_SMTP_PASS)));
+      sessionEmail.setHostName(conf.getString(ConfVars.ZEPPELIN_SMTP_HOST));
+
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.host",
+              conf.getString(ConfVars.ZEPPELIN_SMTP_HOST));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.protocol",
+              conf.getString(ConfVars.ZEPPELIN_SMTP_PROTOCOL));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.port",
+              conf.getString(ConfVars.ZEPPELIN_SMTP_PORT));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.starttls.enable",
+              conf.getString(ConfVars.ZEPPELIN_SMTP_STARTTLS));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.auth",
+              conf.getString(ConfVars.ZEPPELIN_SMTP_AUTH));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.socketFactory.port",
+              conf.getString(ConfVars.ZEPPELIN_SMTP_SOCKETFACTORY));
+      sessionEmail.getMailSession().getProperties().put("mail.smtp.socketFactory.class",
+              conf.getString(ConfVars.ZEPPELIN_SMTP_SOCKETFACTORY_CLASS));
+
+      sessionEmail.setFrom(conf.getString(ConfVars.ZEPPELIN_SMTP_USER));
+      for (String mail : email.split(",")) {
+        sessionEmail.addTo(mail);
+      }
+
+      sessionEmail.setSubject("Note scheduler in Zeppelin");
+      sessionEmail.setMsg(text);
+      sessionEmail.send();
+
+    } catch (EmailException e) {
+      e.printStackTrace();
+    }
+  }
 }
+

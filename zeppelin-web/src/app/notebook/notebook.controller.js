@@ -76,7 +76,6 @@
       if (!value) {
         return '';
       }
-
       for (var o in $scope.cronOption) {
         if ($scope.cronOption[o].value === value) {
           return $scope.cronOption[o].name;
@@ -290,6 +289,13 @@
       $scope.killSaveTimer();
       $scope.saveNote();
     });
+
+    /** Set email for this note **/
+    $scope.setEmail = function(email) {
+      console.log(email);
+      $scope.note.config.email = email;
+      $scope.setConfig();
+    };
 
     $scope.setLookAndFeel = function(looknfeel) {
       $scope.note.config.looknfeel = looknfeel;

@@ -93,6 +93,9 @@ limitations under the License.
     <div ng-controller="LoginCtrl as noteimportctrl">
       <div id="login-container" ng-include src="'components/login/login.html'"></div>
     </div>
+    <div ng-controller="NotebookCtrl as notebookctrl">
+      <div ng-include src="'components/scheduler/scheduler-dialog.html'"></div>
+    </div>
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
